@@ -1,41 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace c0696464
+namespace C0696464
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var a = new TestQuestions2();
-            //a.playingWithForLoops();
+            var a = new TestQuestion2();
+            //a.PlayingWithForLoops();
 
             var b = new birthday_party();
-            b.setuppartylist();
-            b.printPartyList(head, tail)
+            b.setupPartyList();
+            Console.WriteLine(b.printPartyList());
+           Console.WriteLine(b.reverseprintPartyList());
 
         }
     }
 
-    class TestQuestions2
-
+    class TestQuestion2
     {
         public int myFavoriteVariable = 0;
-        public void playingWithForLoops()
+
+        public void PlayingWithForLoops()
         {
-            // write a For Loop to add 10 numbers
-            for (; MyMethod();)
+            // write a For Loop to Add 10 Numbers
+            while (MyMethod())
             {
                 if (myFavoriteVariable > 10)
                 {
-                    Console.WriteLine("i am out here");
+                    Console.WriteLine("i am so out of here!");
                     break;
                 }
-
-                Console.WriteLine("i am in the for loop 10 time");
+                Console.WriteLine("oh no I have to go through this stupid loop again...");
             }
         }
         public bool MyMethod()
@@ -51,52 +47,91 @@ namespace c0696464
         {
             dog_name = name;
             dog_breed = breed;
-
         }
+
+        public dog()
+        {
+        }
+
         public string dog_name;
         public string dog_breed;
         public dog next_dog;
-        public dog previous_dog;
+        public dog prev_dog;
+
     }
-    class Birthday_party
+
+    class birthday_party
     {
         public dog peanut;
         public dog fifi;
         public dog clarence;
+        public dog giselle;
+        public dog lulu;
         public dog roy;
 
         public dog head;
         public dog tail;
         public dog temporary;
 
-        public void setuppartylist();
+        public void setupPartyList()
         {
-        peanut = new dog("Peanut","Bichon");
-        fifi = new dog("fifi","poodle");
-        clarence = new dog("clarence","german", "sheppard");
-        roy = new dog("Roy","Beagle");
+            peanut = new dog("Peanut", "Bichon");
+            fifi = new dog("Fifi", "Poodle");
+            clarence = new dog("Clarence", "German Sheppard");
+            giselle = new dog("giselle", "collie");
+            lulu = new dog("lulu", "shitzu");
+            roy = new dog("Roy", "Beagle");
 
-        peanut.prev_dog= null;
+            peanut.prev_dog = null;
             peanut.next_dog = fifi;
             fifi.prev_dog = peanut;
             fifi.next_dog = clarence;
-            clarence.next_dog =roy;
-             clarence.prev_dog = fifi;
-            roy.prev_dog = clarence;
+            clarence.prev_dog = fifi;
+            clarence.next_dog = giselle;
+            giselle.next_dog = lulu;
+            giselle.prev_dog = clarence;
+            lulu.next_dog = roy;
+            lulu.prev_dog = giselle;
+
+            roy.prev_dog = lulu;
             roy.next_dog = null;
-
-
-
-    }
-    public string printPartyList(dog startOfList, dog endOfList)
-    {
-        string inviteList = "*--";
-        temporary = head;
-        while (temporary.next_dog != null)
-        {
-            inviteList += temporary.dog_name + *---*";
+          
+            head = peanut;
+            tail = roy;
         }
-        return inviteList;
+
+        public string printPartyList()
+        {
+            string inviteList = "*--";
+            temporary = head;
+            while (temporary.next_dog != null)
+            {
+               
+                inviteList += temporary.dog_name + " * --- * ";
+                temporary = temporary.next_dog;
+            }
+            inviteList += temporary.dog_name + " * --- * ";
+            return inviteList;
+        }
+
+
+        public string reverseprintPartyList()
+        {
+            string inviteList = "*--";
+            temporary = tail;
+
+            while (temporary.prev_dog != null)
+            {
+
+
+                inviteList += temporary.dog_name + " * --- * ";
+                
+                temporary = temporary.prev_dog;
+            }
+            inviteList += temporary.dog_name + " * --- * ";
+            return inviteList;
+
+        }
 
     }
 }
